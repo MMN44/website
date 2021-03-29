@@ -101,7 +101,6 @@ export default {
         });
       },
     });
-    //En progreso una clase que pueda leer cualquier CSV dandole su URL, de lo unico que falla es la obtención de los elementos desde el lado cliente
   },
 };
 </script>
