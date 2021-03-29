@@ -14,7 +14,9 @@
     "@fortawesome/free-solid-svg-icons": "^5.11.1",
     "@fortawesome/vue-fontawesome": "^0.1.7",
     "bootstrap-vue": "^2.0.1",
+    "browserify-fs": "^1.0.0",
     "core-js": "^2.6.5",
+    "csv-parser": "^3.0.0",
     "vue": "^2.6.10",
     "vue-popperjs": "^2.1.0",
     "vue-tweet-embed": "^2.3.0"

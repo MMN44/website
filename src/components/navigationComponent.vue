@@ -6,7 +6,7 @@
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item>Home</b-nav-item>
+        <b-nav-item href="/">Home</b-nav-item>
         <b-nav-item-dropdown v-for="element in elements" :key="element.name" :text="element.name" class="nav-item dropdown">
           <b-dropdown-item v-for="link in element.links" :key="link.name" :href="link.link">{{link.name}}</b-dropdown-item>
         </b-nav-item-dropdown>
