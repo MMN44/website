@@ -18,5 +18,5 @@ export default [
     {path: '/comunication/awards/:awardid', component: Award},
     {path: '/comunication/archive', component: Archive},
     {path: '/aboutUs/team', component: Team},
-    {path: '/aboutUs/team/:workerid', component: Worker}
+    {path: '/aboutUs/team/:workerid', component: Worker},
 ]
