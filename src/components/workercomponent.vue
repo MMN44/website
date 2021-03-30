@@ -120,6 +120,7 @@ export default {
     },
     goToProject(uri) {
       console.log("Project: " + uri);
+      document.location.href = uri;
     },
     goToResult(uri) {
       console.log("Result: " + uri);
@@ -157,6 +158,36 @@ export default {
         ];
       },
     });
+
+    this.projects = [];
+    Papa.parse('/data/People-Projects.csv', {
+      download: true,
+      header: true,
+      complete: (results) => {
+        let projects = (results.data).filter((index) => index.Participante == this.name);
+        Papa.parse('/data/Projects.csv', {
+          download: true,
+          header: true,
+          complete: (res) => {
+            let data = res.data;
+            let found = false;
+            projects.forEach(elem => {
+              found = false;
+              data.forEach((proj) => {
+                if (elem.Proyecto == proj.Proyecto && !found) {
+                  this.projects.push({
+                    name: elem.Proyecto,
+                    uri: proj.Paginaweb
+                  });
+                  console.log(this.projects);
+                  found = true;
+                }
+              });             
+            });
+          }
+        });
+      }
+    });
     this.academicBackground =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu congue ex, nec elementum est. Praesent eget mauris vestibulum, fermentum nisl ut, tempor augue. In venenatis tellus sed tellus finibus laoreet. Sed id sodales lorem. Ut egestas massa felis, molestie gravida odio commodo non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a luctus dui. Suspendisse est sapien, maximus ornare arcu id, pellentesque aliquet diam. Donec blandit lectus vitae ipsum scelerisque, at mattis metus tempus. Mauris tellus neque, molestie eget euismod eget, tincidunt et velit. Curabitur egestas metus non libero pretium egestas. Aliquam erat volutpat. Etiam luctus nisl id gravida pharetra. Fusce rutrum dui enim, eu mollis enim ornare in. Donec gravida malesuada nunc, mollis tristique dui blandit vitae. Nullam sed ex nec purus ultricies hendrerit a vel mauris.";
     this.researchAreas =
@@ -177,24 +208,6 @@ export default {
       {
         name: "Award Example 5",
         uri: "https://w3.org/oeg-upm/projects/example4",
-      },
-    ];
-    this.projects = [
-      {
-        name: "STARS4ALL",
-        uri: "https://w3.org/oeg-upm/projects/example5",
-      },
-      {
-        name: "Mobile Age",
-        uri: "https://w3.org/oeg-upm/projects/example6",
-      },
-      {
-        name: "Clarity",
-        uri: "https://w3.org/oeg-upm/projects/example7",
-      },
-      {
-        name: "TrandformingTransport",
-        uri: "https://w3.org/oeg-upm/projects/example8",
       },
     ];
     this.results = [
