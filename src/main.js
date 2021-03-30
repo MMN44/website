@@ -1,5 +1,6 @@
 /* eslint-disable */
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -9,40 +10,21 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import './assets/style/global.css'
 
-import NotFound from './views/404.vue'
-import Home from './views/home.vue'
-import About from './views/about.vue'
-import News from './views/news.vue'
-import singlenewview from './views/singleNewView.vue'
-import awards from './views/awards.vue'
-import award from './views/award.vue'
-import Archive from './views/archive.vue'
-import Team from './views/team.vue'
+import App from "./App.vue";
+import routes from './routes.js'
 library.add(fab)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(BootstrapVue);
+Vue.use(VueRouter);
 
-const routes =  {
-  '/': Home,
-  '/about': About,
-  '/comunication/news': News,
-  '/comunication/new':singlenewview,
-  '/comunication/awards':awards,
-  '/comunication/award':award,
-  '/comunication/archive':Archive,
-  '/aboutUs/team': Team
-}
-const app = new Vue({
-  el: '#app',
-  data: {
-    currentRoute: window.location.pathname
-  },
-  computed: {
-    ViewComponent () {
-      return routes[this.currentRoute] || NotFound
-    }
-  },
-  render (h) { return h(this.ViewComponent) }
-})
+const router = new VueRouter({
+  mode: "history",
+  routes
+});
+
+new Vue({
+  router,
+  render: h => h(App)
+}).$mount("#app");

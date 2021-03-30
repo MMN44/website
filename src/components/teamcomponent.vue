@@ -43,6 +43,7 @@ export default {
   methods: {
     goToWorker(id) {
       console.log("Checking: " + id);
+      window.location.href = "/aboutUs/team/" + id;
     },
   },
   mounted() {
@@ -106,4 +107,7 @@ export default {
 </script>
 
 <style>
+.pointer {
+  cursor: pointer;
+}
 </style>
