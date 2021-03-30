@@ -8,6 +8,8 @@ import Award from './views/award.vue'
 import Archive from './views/archive.vue'
 import Team from './views/team.vue'
 import Worker from "./views/worker.vue"
+import Projects from './views/projects.vue'
+import Project from './views/project.vue'
 
 export default [
     {path: '/', component: Home},
@@ -19,4 +21,7 @@ export default [
     {path: '/comunication/archive', component: Archive},
     {path: '/aboutUs/team', component: Team},
     {path: '/aboutUs/team/:workerid', component: Worker},
+    {path: '/research/projects', component: Projects},
+    {path: '/research/projects/:project', component: Project},
+    {path: '*', component: NotFound}
 ]
