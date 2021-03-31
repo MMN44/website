@@ -66,11 +66,11 @@ export default {
                 links: [],
               };
               //Solo se añaden los links activos del miembro
-              p.facebook && p.facebook != ""
+              p.github && p.github != ""
                 ? person.links.push({
-                    name: "Facebook",
-                    link: p.facebook,
-                    icon: "facebook",
+                    name: "Github",
+                    link: "https://www.github.com/" + p.github,
+                    icon: "github",
                     type: "fab",
                     id: "" + person.links.length - 1,
                   })

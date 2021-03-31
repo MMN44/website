@@ -34,7 +34,7 @@
           <b-col md="8">
             <b-card-body>
               <b-card-title>
-                <b-link>{{ element.title }}</b-link>
+                <b-link v-on:click="goToProject(element.title)">{{ element.title }}</b-link>
               </b-card-title>
               <b-card-sub-title>
                 {{ element.date }}
@@ -86,6 +86,9 @@ export default {
     showAll() {
       this.elements = this.data.slice();
     },
+    goToProject(title) {
+      window.location.href = "/research/projects/" + title;
+    }
   },
   mounted() {
     this.data = [];
@@ -97,21 +100,22 @@ export default {
         let id = 0;
         Papa.parse("/data/People-Projects.csv", {
           download: true,
-          headers: true,
+          header: true,
           complete: (proj) => {
-            let team = "";
+            let equipo;
             let projInfo = proj.data;
             projects.forEach((index) => {
+              equipo = "";
               projInfo.forEach((pos) => {
                 if (index.Proyecto == pos.Proyecto) {
-                  team = team.concat(pos.Participante + " ");
+                  equipo != "" ? equipo = equipo.concat(', ', pos.Participante) : equipo = equipo.concat(pos.Participante);
                 }
               });
               this.data.push({
                 title: index.Proyecto,
                 description: index.Descripcion,
                 img: "/data/images/Projects/" + index.Proyecto + ".png",
-                team: team,
+                team: equipo,
                 id: id,
                 type: index.Estado,
               });
