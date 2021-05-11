@@ -34,7 +34,7 @@
           <b-col md="8">
             <b-card-body>
               <b-card-title>
-                <b-link v-on:click="goToProject(element.title)">{{ element.title }}</b-link>
+                <b-link v-on:click="goToProject(element.projId)">{{ element.title }}</b-link>
               </b-card-title>
               <b-card-sub-title>
                 {{ element.date }}
@@ -86,8 +86,8 @@ export default {
     showAll() {
       this.elements = this.data.slice();
     },
-    goToProject(title) {
-      window.location.href = "/research/projects/" + title;
+    goToProject(id) {
+      window.location.href = "/research/projects/" + id;
     }
   },
   mounted() {
@@ -107,17 +107,18 @@ export default {
             projects.forEach((index) => {
               equipo = "";
               projInfo.forEach((pos) => {
-                if (index.Proyecto == pos.Proyecto) {
+                if (index.Project == pos.Proyecto) {
                   equipo != "" ? equipo = equipo.concat(', ', pos.Participante) : equipo = equipo.concat(pos.Participante);
                 }
               });
               this.data.push({
-                title: index.Proyecto,
-                description: index.Descripcion,
-                img: "/data/images/Projects/" + index.Proyecto + ".png",
+                title: index.Project,
+                description: index.Description,
+                img: "/data/images/Projects/" + index.Project + ".png",
                 team: equipo,
                 id: id,
-                type: index.Estado,
+                projId: index.id,
+                type: index.Status,
               });
               id++;
             });

@@ -134,10 +134,10 @@ export default {
       complete: (results) => {
         let pArray = results.data.filter((index) => index.id == worker);
         let p = pArray[0];
-        this.image = "/data/images/People/" + p.id + ".jpg";
+        this.image = "/data/images/People/" + p.id + ".png";
         this.name = p.name;
         this.role = p.role;
-        this.bio = p.biography;
+        this.bio = p.Biography;
         this.contact = [
           {
             name: "E-mail",
@@ -170,17 +170,14 @@ export default {
           header: true,
           complete: (res) => {
             let data = res.data;
-            let found = false;
             projects.forEach(elem => {
-              found = false;
               data.forEach((proj) => {
-                if (elem.Proyecto == proj.Proyecto && !found) {
+                if (elem.Proyecto == proj.Project) {
                   this.projects.push({
                     name: elem.Proyecto,
-                    uri: proj.Paginaweb
+                    uri: '/research/projects/' + elem.Proyecto
                   });
                   console.log(this.projects);
-                  found = true;
                 }
               });             
             });
