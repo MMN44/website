@@ -31,7 +31,13 @@
             </b-list-group-item>
             <b-list-group-item>
               <h5><b>Research Areas</b></h5>
-              <p>{{ researchAreas }}</p>
+              <b-list-group>
+                <b-list-group-item v-for="area in researchAreas" :key="area.uri"
+                  ><b-link v-on:click="goToArea(area.uri)"
+                    ><b>{{ area.name }}</b></b-link
+                  ></b-list-group-item
+                >
+              </b-list-group>
             </b-list-group-item>
             <b-list-group-item>
               <h5><b>Hobbies</b></h5>
@@ -106,7 +112,7 @@ export default {
       role: String,
       bio: String,
       academicBackground: String,
-      researchAreas: String,
+      researchAreas: [],
       hobbies: [],
       awards: [],
       contact: [],
@@ -119,11 +125,13 @@ export default {
       console.log("Award: " + uri);
     },
     goToProject(uri) {
-      console.log("Project: " + uri);
       document.location.href = uri;
     },
     goToResult(uri) {
       console.log("Result: " + uri);
+    },
+    goToArea(uri) {
+      document.location.href = uri;
     },
   },
   mounted() {
@@ -156,38 +164,51 @@ export default {
             value: p.linkedin,
           },
         ];
+        Papa.parse("/data/People-ResearchArea.csv", {
+          download: true,
+          header: true,
+          complete: (projRes) => {
+            let resAreas = projRes.data.filter(
+              (elem) => elem.id_people == p.id
+            );
+            resAreas.forEach((area) => {
+              this.researchAreas.push({
+                name: area.Investigation,
+                uri: "/research/areas/" + area.id_research_area,
+              });
+            });
+          },
+        });
+
+        Papa.parse("/data/People-Projects.csv", {
+          download: true,
+          header: true,
+          complete: (results) => {
+            let projectsData = results.data.filter(
+              (index) => index.Participante == this.name
+            );
+            Papa.parse("/data/Projects.csv", {
+              download: true,
+              header: true,
+              complete: (res) => {
+                let data = res.data;
+                projectsData.forEach((elem) => {
+                  let item = data.filter(
+                    (item) => item.Project == elem.Proyecto
+                  )[0];
+                  this.projects.push({
+                    name: item.Project,
+                    uri: "/research/projects/" + item.id,
+                  });
+                });
+              },
+            });
+          },
+        });
       },
     });
 
-    this.projects = [];
-    Papa.parse('/data/People-Projects.csv', {
-      download: true,
-      header: true,
-      complete: (results) => {
-        let projects = (results.data).filter((index) => index.Participante == this.name);
-        Papa.parse('/data/Projects.csv', {
-          download: true,
-          header: true,
-          complete: (res) => {
-            let data = res.data;
-            projects.forEach(elem => {
-              data.forEach((proj) => {
-                if (elem.Proyecto == proj.Project) {
-                  this.projects.push({
-                    name: elem.Proyecto,
-                    uri: '/research/projects/' + elem.Proyecto
-                  });
-                  console.log(this.projects);
-                }
-              });             
-            });
-          }
-        });
-      }
-    });
     this.academicBackground =
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu congue ex, nec elementum est. Praesent eget mauris vestibulum, fermentum nisl ut, tempor augue. In venenatis tellus sed tellus finibus laoreet. Sed id sodales lorem. Ut egestas massa felis, molestie gravida odio commodo non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a luctus dui. Suspendisse est sapien, maximus ornare arcu id, pellentesque aliquet diam. Donec blandit lectus vitae ipsum scelerisque, at mattis metus tempus. Mauris tellus neque, molestie eget euismod eget, tincidunt et velit. Curabitur egestas metus non libero pretium egestas. Aliquam erat volutpat. Etiam luctus nisl id gravida pharetra. Fusce rutrum dui enim, eu mollis enim ornare in. Donec gravida malesuada nunc, mollis tristique dui blandit vitae. Nullam sed ex nec purus ultricies hendrerit a vel mauris.";
-    this.researchAreas =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu congue ex, nec elementum est. Praesent eget mauris vestibulum, fermentum nisl ut, tempor augue. In venenatis tellus sed tellus finibus laoreet. Sed id sodales lorem. Ut egestas massa felis, molestie gravida odio commodo non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a luctus dui. Suspendisse est sapien, maximus ornare arcu id, pellentesque aliquet diam. Donec blandit lectus vitae ipsum scelerisque, at mattis metus tempus. Mauris tellus neque, molestie eget euismod eget, tincidunt et velit. Curabitur egestas metus non libero pretium egestas. Aliquam erat volutpat. Etiam luctus nisl id gravida pharetra. Fusce rutrum dui enim, eu mollis enim ornare in. Donec gravida malesuada nunc, mollis tristique dui blandit vitae. Nullam sed ex nec purus ultricies hendrerit a vel mauris.";
     this.awards = [
       {
