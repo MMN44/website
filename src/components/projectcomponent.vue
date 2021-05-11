@@ -77,11 +77,11 @@ export default {
         download: true,
         header: true,
         complete: (results) => {
-          let res = results.data.filter((p) => proj == p.Proyecto)[0];
-          this.name = res.Proyecto;
-          this.description = res.Descripcion;
-          this.image = "/data/images/Projects/" + res.Proyecto + ".png";
-          this.researchers = [];
+          let res = results.data.filter((p) => proj == p.id)[0];
+          this.name = res.Project;
+          this.description = res.Description;
+          this.image = "/data/images/Projects/" + res.Project + ".png";
+          this.researchers = []; 
           Papa.parse("/data/People-Projects.csv", {
             download: true,
             header: true,
@@ -92,11 +92,9 @@ export default {
                 header: true,
                 complete: (people) => {
                   let p = [];
-                  debugger;
                   projects.forEach((element) => {
-                    if (element.Proyecto == res.Proyecto) {
+                    if (element.Proyecto == res.Project) {
                       people.data.forEach((per) => {
-                        //Debe ser el mismo nombre en todos los CSV para que haya relación.
                         if (per.name == element.Participante) {
                           p.push(per);
                         }

@@ -62,7 +62,7 @@ export default {
                 name: p.name != "" ? p.name : "Desconocido",
                 role: p.role != "" ? p.role : "Desconocido",
                 //Hay que plantear si introducir el nombre de la imagen de cada uno en el CSV para poder relacionarla con su elemento al crearlo
-                image: "/data/images/People/" + p.id + ".jpg",
+                image: "/data/images/People/" + p.id + ".png",
                 links: [],
               };
               //Solo se añaden los links activos del miembro
