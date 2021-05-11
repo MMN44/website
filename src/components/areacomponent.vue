@@ -26,9 +26,14 @@
               <b-list-group-item>
                 <h6><b>Main Researchers</b></h6>
                 <h6>
-                  <span v-for="(item, index) in mResearchers" :key="item.uri"
-                    >{{ item.name
-                    }}<span
+                  <span
+                    v-for="(item, index) in mResearchers"
+                    :key="item.uri"
+                    v-on:click="goToPerson(item.uri)"
+                    ><b-link v-on:click="goToPerson(item.uri)">{{
+                      item.name
+                    }}</b-link
+                    ><span
                       v-if="
                         mResearchers.length > 1 &&
                         index < mResearchers.length - 1
@@ -42,8 +47,10 @@
                 <h6><b>Researchers</b></h6>
                 <h6>
                   <span v-for="(item, index) in researchers" :key="item.uri"
-                    >{{ item.name
-                    }}<span
+                    ><b-link v-on:click="goToPerson(item.uri)">{{
+                      item.name
+                    }}</b-link
+                    ><span
                       v-if="
                         researchers.length > 1 && index < researchers.length - 1
                       "
@@ -55,9 +62,14 @@
               <b-list-group-item>
                 <h6><b>PhD Students</b></h6>
                 <h6>
-                  <span v-for="(item, index) in students" :key="item.uri"
-                    >{{ item.name
-                    }}<span
+                  <span
+                    v-for="(item, index) in students"
+                    :key="item.uri"
+                    v-on:click="goToPerson(item.uri)"
+                    ><b-link v-on:click="goToPerson(item.uri)">{{
+                      item.name
+                    }}</b-link
+                    ><span
                       v-if="students.length > 1 && index < students.length - 1"
                       >,
                     </span>
@@ -137,10 +149,12 @@ export default {
             download: true,
             header: true,
             complete: (ppResults) => {
-              let pplArea = ppResults.data.filter((elem) => elem.id_research_area == area);
+              let pplArea = ppResults.data.filter(
+                (elem) => elem.id_research_area == area
+              );
               let pplProj = [];
               pplArea.forEach((proj) => {
-                proj.id_people != "" ? pplProj.push(proj.id_people) : '';
+                proj.id_people != "" ? pplProj.push(proj.id_people) : "";
               });
               Papa.parse("/data/People.csv", {
                 download: true,
@@ -181,17 +195,17 @@ export default {
                 download: true,
                 header: true,
                 complete: (projResults) => {
-                  let projArea = projResults.data.filter((elem) => elem.id_research_area == area);
+                  let projArea = projResults.data.filter(
+                    (elem) => elem.id_research_area == area
+                  );
                   projArea.forEach((proj) => {
-                    this.projects.push(
-                      {
-                        name: proj.Proyecto,
-                        uri: '/research/projects/' + proj.id_project
-                      }
-                    )
-                  })
-                }
-              })
+                    this.projects.push({
+                      name: proj.Proyecto,
+                      uri: "/research/projects/" + proj.id_project,
+                    });
+                  });
+                },
+              });
             },
           });
         },
@@ -203,6 +217,9 @@ export default {
     },
     goToResult(uri) {
       console.log("Result: " + uri);
+    },
+    goToPerson(uri) {
+      window.location.href = uri;
     },
   },
   mounted() {
