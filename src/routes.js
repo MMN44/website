@@ -10,6 +10,8 @@ import Team from './views/team.vue'
 import Worker from "./views/worker.vue"
 import Projects from './views/projects.vue'
 import Project from './views/project.vue'
+import ResearchAreas from './views/researchareas.vue'
+import Area from './views/area.vue'
 
 export default [
     {path: '/', component: Home},
@@ -23,5 +25,7 @@ export default [
     {path: '/aboutUs/team/:workerid', component: Worker},
     {path: '/research/projects', component: Projects},
     {path: '/research/projects/:project', component: Project},
+    {path: '/research/areas', component: ResearchAreas},
+    {path: '/research/areas/:area', component: Area},
     {path: '*', component: NotFound}
 ]
