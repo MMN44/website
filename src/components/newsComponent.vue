@@ -10,7 +10,7 @@
                 <b-col md="8">
                     <b-card-body>
                     <b-card-title>
-                        <b-link>{{element.title}}</b-link>
+                        <b-link v-on:click="goToNew(element.id)">{{element.title}}</b-link>
                     </b-card-title>
                     <b-card-sub-title>
                         {{element.date}}
@@ -38,6 +38,11 @@ export default {
     name:'newscomponent',
     data(){
         return{ elements:[]}
+    },
+    methods: {
+        goToNew(id) {
+            document.location.href = '/comunication/news/' + id;
+        }
     },
     mounted(){
         this.elements = [

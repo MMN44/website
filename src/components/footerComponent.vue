@@ -5,7 +5,7 @@
         <b-nav-item
         v-for="menuLink in menuLinks" :key="menuLink.id" :h-ref="menuLink.link"
         >
-          <span class="text-white">{{menuLink.name}}</span>
+          <router-link :to="{ name: 'Contact' }"><span class="text-white">{{menuLink.name}}</span></router-link>
         </b-nav-item>
       </b-nav>
     </div>
@@ -13,7 +13,7 @@
       <b-nav>
         <b-nav-item
         v-for="socialLink in socialLinks" :key="socialLink.id"
-        :h-ref="socialLink.link"
+        :h-ref="socialLink.link" v-on:click="goToLink(socialLink.link)"
         >
         <span v-if="socialLink.icon == '' " class="text-white">{{socialLink.name}}</span>
         <font-awesome-icon class="text-white" :icon="[socialLink.type, socialLink.icon]" size="lg" />
@@ -31,6 +31,11 @@ export default {
         menuLinks:[]
       }
     },
+    methods: {
+      goToLink(uri) {
+        document.location.href = uri;
+      },
+    },
     mounted(){
       this.socialLinks = [
         {
@@ -42,14 +47,14 @@ export default {
         },
         {
           name:'Linkedin',
-          link:'#',
+          link:'https://www.linkedin.com/company/ontologyengineeringgroup/',
           icon:'linkedin',
           type:'fab',
           id:'1'
         },
         {
           name:'Twitter',
-          link:'#',
+          link:'https://twitter.com/oeg_upm',
           icon:'twitter',
           type:'fab',
           id:'2'
@@ -58,7 +63,7 @@ export default {
       this.menuLinks = [
         {
           name:'Contact',
-          link:'#',
+          link:'contact',
           id:'0'
         },
                 {
@@ -66,17 +71,17 @@ export default {
           link:'#',
           id:'1'
         },
-                {
-          name:'Website Sitemap',
-          link:'#',
-          id:'2'
-        },
         {
           name:'OEG Wiki',
           link:'#',
-          id:'3'
+          id:'2'
         }
       ]
     }
 }
 </script>
+<style>
+  a :hover {
+    text-decoration: none !important;
+  }
+</style>

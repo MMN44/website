@@ -11,7 +11,7 @@
           header-text-variant="light"
         >
           <b-card-body>
-            <p>{{ description }}</p>
+            {{ description }}
           </b-card-body>
         </b-card>
       </div>
@@ -44,7 +44,6 @@
                 ></b-list-group-item
               >
             </b-list-group>
-            <b-button block class="mt-3" variant="info">View All</b-button>
           </b-card>
         </div>
       </div>
@@ -81,7 +80,7 @@ export default {
           this.name = res.Project;
           this.description = res.Description;
           this.image = "/data/images/Projects/" + res.Project + ".png";
-          this.researchers = []; 
+          this.researchers = [];
           Papa.parse("/data/People-Projects.csv", {
             download: true,
             header: true,
