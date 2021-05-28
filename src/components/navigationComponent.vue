@@ -27,9 +27,9 @@ export default {
         this.elements = [
             {name:'Comunication', links:[{name:'News', link:'/comunication/news'}, {name:'Awards', link:'/comunication/awards'}, {name:'Archive', link:'/comunication/archive'}]},
             {name:'Events', links:[{name:'Scientific Events', link:'/events/scientificEvents'}, {name:'Social Events', link:'/events/socialEvents'}]},
-            {name:'About us', links:[{name:'History', link:'/aboutUs/history'}, {name:'Team', link:'/aboutUs/team'}]},
+            {name:'About us', links:[{name:'History', link:'/aboutUs/history'}, {name:'Team', link:'/aboutUs/team'}, {name: 'Join us', link: '/aboutUs/joinUs'}]},
             {name:'Research', links:[{name:'Research Areas', link:'/research/areas'},{name:'Projects', link:'/research/projects'},{name:'Results', link:'/research/results'},{name:'Collaborations', link:'/research/collaborations'},]},
-            {name:'Education', links:[{name:'Oficial Courses', link:'/eductaion/courses/oficial'},{name:'MOOC\'S', link:'/education/mooc'},{name:'Profissional Training', link:'/education/profissionalTraining'}]},
+            {name:'Education', links:[{name:'Official Courses', link:'/education/courses/official'},{name:'MOOC\'S', link:'/education/mooc'},{name:'Professional Training', link:'/education/professionalTraining'}]},
             {name:'Resources', links:[{name:'Ontologies', link:'/resources/ontologies'},{name:'Linked Data', link:'/resources/linkedData'},{name:'Technology', link:'/resources/technology'},{name:'Services', link:'/resources/services'}]}
         ]
     }

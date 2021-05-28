@@ -6,7 +6,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-sm-12 col-md-8">
-        <img :src="image" alt="" rounded class="img-fluid" />
+        <img id="img" :src="image" alt="" rounded class="img-fluid" />
         <b-card
           class="mt-3"
           header-bg-variant="primary"
@@ -164,21 +164,6 @@ export default {
             value: p.linkedin,
           },
         ];
-        Papa.parse("/data/People-ResearchArea.csv", {
-          download: true,
-          header: true,
-          complete: (projRes) => {
-            let resAreas = projRes.data.filter(
-              (elem) => elem.id_people == p.id
-            );
-            resAreas.forEach((area) => {
-              this.researchAreas.push({
-                name: area.Investigation,
-                uri: "/research/areas/" + area.id_research_area,
-              });
-            });
-          },
-        });
 
         Papa.parse("/data/People-Projects.csv", {
           download: true,
@@ -200,6 +185,21 @@ export default {
                     name: item.Project,
                     uri: "/research/projects/" + item.id,
                   });
+                });
+                Papa.parse("/data/People-ResearchArea.csv", {
+                  download: true,
+                  header: true,
+                  complete: (projRes) => {
+                    let resAreas = projRes.data.filter(
+                      (elem) => elem.id_people == p.id
+                    );
+                    resAreas.forEach((area) => {
+                      this.researchAreas.push({
+                        name: area.Investigation,
+                        uri: "/research/areas/" + area.id_research_area,
+                      });
+                    });
+                  },
                 });
               },
             });

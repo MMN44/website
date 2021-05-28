@@ -10,9 +10,7 @@
           header="DESCRIPTION"
           header-text-variant="light"
         >
-          <b-card-body>
-            <p>{{ description }}</p>
-          </b-card-body>
+          <b-card-body>{{ description }}</b-card-body>
         </b-card>
       </div>
       <div class="col-sm-12 col-md-4">
@@ -92,7 +90,6 @@
                 ></b-list-group-item
               >
             </b-list-group>
-            <b-button block class="mt-3" variant="info">View All</b-button>
           </b-card>
         </div>
         <div class="mt-3">
@@ -108,7 +105,6 @@
                 ></b-list-group-item
               >
             </b-list-group>
-            <b-button block class="mt-3" variant="info">View All</b-button>
           </b-card>
         </div>
       </div>
@@ -145,6 +141,7 @@ export default {
           let resArea = results.data.filter((index) => index.id == area)[0];
           this.name = resArea.AreasdeInvestigacion;
           this.description = resArea.Description;
+          this.image = "/data/images/research-area/" + resArea.id + ".png";
           Papa.parse("/data/People-ResearchArea.csv", {
             download: true,
             header: true,
@@ -210,7 +207,6 @@ export default {
           });
         },
       });
-      this.image = "https://picsum.photos/id/385/800/500?grayscale";
     },
     goToProject(uri) {
       window.location.href = uri;

@@ -44,8 +44,8 @@ export default {
           this.elements.push(
             {
               name: elem.AreasdeInvestigacion,
-              img: 'https://picsum.photos/id/385/600/300?grayscale',
-              description: elem.Description,
+              img: "/data/images/research-area/" + elem.id + ".png",
+              description: (elem.Description).length > 550 ? (elem.Description).substring(0, 547) + '...' : elem.Description,
               uri: '/research/areas/' + elem.id
             }
           )
@@ -57,4 +57,7 @@ export default {
 </script>
 
 <style>
+p {
+  height: 10vw;
+}
 </style>

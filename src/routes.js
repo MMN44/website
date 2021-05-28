@@ -12,6 +12,12 @@ import Projects from './views/projects.vue'
 import Project from './views/project.vue'
 import ResearchAreas from './views/researchareas.vue'
 import Area from './views/area.vue'
+import Events from './views/events.vue'
+import History from './views/history.vue'
+import Education from './views/education.vue'
+import JoinUs from './views/joinus.vue'
+import JoinUsCategory from './views/joinuscategory.vue'
+import Contact from './views/location.vue'
 
 export default [
     {path: '/', component: Home},
@@ -21,11 +27,19 @@ export default [
     {path: '/comunication/awards', component: Awards},
     {path: '/comunication/awards/:awardid', component: Award},
     {path: '/comunication/archive', component: Archive},
+    {path: '/aboutUs/history', component: History},
     {path: '/aboutUs/team', component: Team},
     {path: '/aboutUs/team/:workerid', component: Worker},
+    {path: '/aboutUs/joinUs', component: JoinUs},
+    {path: '/aboutUs/joinUs/:category', component: JoinUsCategory},
     {path: '/research/projects', component: Projects},
     {path: '/research/projects/:project', component: Project},
     {path: '/research/areas', component: ResearchAreas},
     {path: '/research/areas/:area', component: Area},
+    {path: '/education/courses/official', component: Education},
+    {path: '/education/mooc', component: Education},
+    {path: '/education/professionalTraining', component: Education},
+    {path: '/events/scientificEvents/', component: Events},
+    {path: '/contact', component: Contact, name: 'Contact'},
     {path: '*', component: NotFound}
 ]

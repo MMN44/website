@@ -19,6 +19,7 @@
     "vue": "^2.6.10",
     "vue-popperjs": "^2.1.0",
     "vue-router": "^3.5.1",
+    "vue-sweet-calendar": "^0.3.1",
     "vue-tweet-embed": "^2.3.0",
     "vue-twitter": "^0.1.0"
   },

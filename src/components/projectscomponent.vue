@@ -39,9 +39,9 @@
               <b-card-sub-title>
                 {{ element.date }}
               </b-card-sub-title>
-              <b-card-text>
+              <b-card-body>
                 {{ element.description }}
-              </b-card-text>
+              </b-card-body>
               <hr />
               <b-card-text> Developed by {{ element.team }} </b-card-text>
             </b-card-body>
@@ -113,7 +113,7 @@ export default {
               });
               this.data.push({
                 title: index.Project,
-                description: index.Description,
+                description: (index.Description).length > 350 ? (index.Description).substring(0, 347) + '...' : index.Description,
                 img: "/data/images/Projects/" + index.Project + ".png",
                 team: equipo,
                 id: id,

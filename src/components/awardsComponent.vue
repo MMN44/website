@@ -6,7 +6,7 @@
         <b-collapse visible :id="element.year" class="mt-2">
             <b-list-group>
                 <b-list-group-item v-for="award in element.awards" :key="award.name">
-                    <b-link><span class="text-dark">{{award.name}}</span></b-link>
+                    <b-link v-on:click="goToAward(award.id)"><span class="text-dark">{{award.name}}</span></b-link>
                 </b-list-group-item>
             </b-list-group>
         </b-collapse>
@@ -21,6 +21,11 @@ data(){
     return {
         elements:[]
 
+    }
+},
+methods: {
+    goToAward(id) {
+        document.location.href = '/comunication/awards/' + id;
     }
 },
 mounted(){
@@ -60,11 +65,11 @@ mounted(){
                 },
                 {
                     name:'DDDD',
-                    id:'4'
+                    id:'5'
                 },
                 {
                     name:'EEEE',
-                    id:'5'
+                    id:'6'
                 }                        
             ]
         }
